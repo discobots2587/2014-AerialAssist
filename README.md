@@ -1,7 +1,8 @@
 2014-AerialAssist
 =================
 
-FIRST Robotics Competition Java Code for the 2014 Game: Aerial Assist
+FIRST Robotics Competition Java Code for the 2014 Game: Aerial Assist    
+
 This entire repository is a Netbeans FRC Project. The /src/ folder contains
 the source code for the Discobots robot, Octanis. The /docs/ folder contains
 supplemental documentation that may be useful in understanding the code,
