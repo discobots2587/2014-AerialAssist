@@ -20,16 +20,16 @@ public abstract class CommandBase extends Command {
 
     public static CompressorSub compressorSub = new CompressorSub();
     public static Drivetrain drivetrainSub = new Drivetrain();
-    public static Intake rollerSub = new Intake();
-    public static Launcher pneumatapultSub = new Launcher();
+    public static Intake intakeSub = new Intake();
+    public static Launcher launcherSub = new Launcher();
 
     public static void init() {
         oi = new OI();
 
         SmartDashboard.putData(drivetrainSub);
         SmartDashboard.putData(compressorSub);
-        SmartDashboard.putData(rollerSub);
-        SmartDashboard.putData(pneumatapultSub);
+        SmartDashboard.putData(intakeSub);
+        SmartDashboard.putData(launcherSub);
 
     }
 

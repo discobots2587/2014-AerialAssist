@@ -12,7 +12,7 @@ public class FireLauncher extends CommandBase {
     public static final boolean LOAD = false;
 
     public FireLauncher(boolean fire, int ch) {
-        requires(pneumatapultSub);
+        requires(launcherSub);
         check = ch;
         shoot = fire;
         maxRunTime = 1500;
@@ -44,8 +44,8 @@ public class FireLauncher extends CommandBase {
     }
 
     protected void execute() {
-        if (rollerSub.isExtended()) {
-            pneumatapultSub.fire(shoot);
+        if (intakeSub.isExtended()) {
+            launcherSub.fire(shoot);
         }
     }
 
@@ -54,7 +54,7 @@ public class FireLauncher extends CommandBase {
     }
 
     protected void end() {
-        pneumatapultSub.fire(false);
+        launcherSub.fire(false);
     }
 
     protected void interrupted() {

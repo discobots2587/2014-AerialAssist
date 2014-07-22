@@ -16,7 +16,7 @@ public class ToggleArm extends CommandBase {
     }
 
     protected void initialize() {
-        rollerSub.setExtended(check);
+        intakeSub.setExtended(check);
         if (!compressorSub.isEnabled()) {
             compressorSub.on();
         }
@@ -30,7 +30,7 @@ public class ToggleArm extends CommandBase {
     }
 
     protected void end() {
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
     }
 
     protected void interrupted() {

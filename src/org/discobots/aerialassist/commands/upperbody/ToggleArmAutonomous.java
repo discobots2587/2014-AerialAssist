@@ -13,7 +13,7 @@ public class ToggleArmAutonomous extends CommandBase {
     }
 
     protected void initialize() {
-        rollerSub.setExtended(check);
+        intakeSub.setExtended(check);
         endTime = System.currentTimeMillis() + maxRunTime;
         if (!compressorSub.isEnabled()) {
             compressorSub.on();
@@ -21,8 +21,8 @@ public class ToggleArmAutonomous extends CommandBase {
     }
 
     protected void execute() {
-        if (rollerSub.isExtended()) {
-            rollerSub.setIntakeSpeed(.2 * Intake.IN);
+        if (intakeSub.isExtended()) {
+            intakeSub.setIntakeSpeed(.2 * Intake.IN);
         }
     }
 
@@ -35,7 +35,7 @@ public class ToggleArmAutonomous extends CommandBase {
     }
 
     protected void end() {
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
     }
 
     protected void interrupted() {

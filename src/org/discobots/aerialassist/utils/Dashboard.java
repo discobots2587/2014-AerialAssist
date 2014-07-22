@@ -10,8 +10,8 @@ public class Dashboard {
     public static void init() {
         driveSub = CommandBase.drivetrainSub;
         compSub = CommandBase.compressorSub;
-        intaSub = CommandBase.rollerSub;
-        launSub = CommandBase.pneumatapultSub;
+        intaSub = CommandBase.intakeSub;
+        launSub = CommandBase.launcherSub;
     }
     static Drivetrain driveSub;
     static CompressorSub compSub;
@@ -26,6 +26,7 @@ public class Dashboard {
 
         // Drive
         SmartDashboard.putNumber("Encoder Distance", driveSub.getEncoderForwardDistance());
+        SmartDashboard.putNumber("Gyroscope Angle", driveSub.getGyroscopeAngle());
         SmartDashboard.putNumber("Ultrasonic Shooter", driveSub.getUltrasonicShooterAverageValue());
         SmartDashboard.putNumber("Ultrasonic Intake", driveSub.getUltrasonicIntakeAverageValue());
         SmartDashboard.putBoolean("Use MiniCims", driveSub.getMiniCimUsage());
@@ -45,6 +46,8 @@ public class Dashboard {
         
         // Misc
         SmartDashboard.putBoolean("Ready to Shoot?", ControlLEDState.readyToShoot);
+        SmartDashboard.putBoolean("Functional LEDS?", driveSub.getFunctionalLEDState());
+        SmartDashboard.putBoolean("Decorative LEDS?", driveSub.getDecorativeLEDState());
 
     }
 }

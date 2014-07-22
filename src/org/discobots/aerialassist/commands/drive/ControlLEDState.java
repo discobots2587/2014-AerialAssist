@@ -25,10 +25,12 @@ public class ControlLEDState extends CommandBase {
         boolean readyToShoot = meetsMinDistance && meetsMaxDistance && meetsPressure;
         ControlLEDState.readyToShoot = readyToShoot;
         if (readyToShoot) {
-            drivetrainSub.writeLEDState(true);
+            drivetrainSub.writeFunctionalLEDState(true);
         } else {
-            drivetrainSub.writeLEDState(false);
+            drivetrainSub.writeFunctionalLEDState(false);
         }
+        
+        drivetrainSub.writeDecorativeLEDState(true);
     }
 
     protected boolean isFinished() {

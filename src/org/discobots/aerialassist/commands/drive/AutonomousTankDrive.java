@@ -12,7 +12,7 @@ public class AutonomousTankDrive extends CommandBase {
 
     public AutonomousTankDrive(double l, double r, int time) {
         requires(drivetrainSub);
-        requires(rollerSub);
+        requires(intakeSub);
         maxRunTime = time;
         left = -l;
         right = r;
@@ -20,7 +20,7 @@ public class AutonomousTankDrive extends CommandBase {
 
     public AutonomousTankDrive(double l, double r, double p, int time) {
         requires(drivetrainSub);
-        requires(rollerSub);
+        requires(intakeSub);
         maxRunTime = time;
         left = l;
         right = -r;
@@ -29,13 +29,13 @@ public class AutonomousTankDrive extends CommandBase {
 
     protected void initialize() {
         drivetrainSub.tankDrive(0, 0);
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
         startTime = System.currentTimeMillis();
     }
 
     protected void execute() {
         drivetrainSub.tankDrive(left, right);
-        rollerSub.setIntakeSpeed(power);
+        intakeSub.setIntakeSpeed(power);
     }
 
     protected boolean isFinished() {
@@ -44,7 +44,7 @@ public class AutonomousTankDrive extends CommandBase {
 
     protected void end() {
         drivetrainSub.tankDrive(0, 0);
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
     }
 
     protected void interrupted() {

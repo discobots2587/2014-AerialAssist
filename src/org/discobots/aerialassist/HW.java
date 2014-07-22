@@ -19,12 +19,6 @@ public class HW {
     public static final int intakeMotor = 5;
     
     /**--------------------------------
-     * Relays
-     ---------------------------------*/
-    public static final int compressorRelay = 1;
-    public static final int spikeReplacementVictor = 10;
-    
-    /**--------------------------------
      * Solenoids
      ---------------------------------*/
     // Port 3 & 4 are bad on actual robot.
@@ -35,12 +29,19 @@ public class HW {
     /**---------------------------------
      * Sensors
      ---------------------------------*/
+    public static final int gyroscope = 2;
     public static final int forwardEncoderA = 10,forwardEncoderB = 11;
-    public static final int  pressureSwitch = 1, pressureSensor = 5;
+    public static final int pressureSwitch = 1, pressureSensor = 5;
+    
+    /**--------------------------------
+     * Relays
+     ---------------------------------*/
+    public static final int compressorRelay = 1;
     
     /**---------------------------------
      * Outputs
      ---------------------------------*/
-    public static final int ledRelay = 8;
+    public static final int decorativeLedRelay = 7;
+    public static final int functionalLedRelay = 8;
 }
  

@@ -1,18 +1,18 @@
 package org.discobots.aerialassist.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.discobots.aerialassist.HW;
-import org.discobots.aerialassist.utils.BetterCompressor;
 import org.discobots.aerialassist.utils.PressureSensor;
 
 public class CompressorSub extends Subsystem {
   
     PressureSensor pressureSensor;
-    BetterCompressor compressor;
+    Compressor compressor;
     
     public CompressorSub() {
         super("Compressor");
-        compressor = new BetterCompressor(1, HW.pressureSwitch, 1, HW.compressorRelay, 1, HW.spikeReplacementVictor);
+        compressor = new Compressor(1, HW.pressureSwitch, 1, HW.compressorRelay);
         pressureSensor = new PressureSensor(HW.pressureSensor);
     }
 

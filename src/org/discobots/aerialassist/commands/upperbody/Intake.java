@@ -9,7 +9,7 @@ public class Intake extends CommandBase {
     public static final int IN = -1;
 
     public Intake(int direction) {
-        requires(rollerSub);
+        requires(intakeSub);
         this.direction = direction;
     }
 
@@ -17,7 +17,7 @@ public class Intake extends CommandBase {
     }
 
     protected void execute() {
-        rollerSub.setIntakeSpeed(direction);
+        intakeSub.setIntakeSpeed(direction);
     }
 
     protected boolean isFinished() {
@@ -25,7 +25,7 @@ public class Intake extends CommandBase {
     }
 
     protected void end() {
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
     }
 
     protected void interrupted() {

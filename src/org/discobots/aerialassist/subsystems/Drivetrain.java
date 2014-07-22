@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import org.discobots.aerialassist.HW;
 import org.discobots.aerialassist.commands.drive.CheesyArcadeDrive;
+import org.discobots.aerialassist.utils.DiscoGyro;
 import org.discobots.aerialassist.utils.UltrasonicSRF02_I2C;
 
 public class Drivetrain extends Subsystem {
@@ -22,11 +23,13 @@ public class Drivetrain extends Subsystem {
     private RobotDrive drive;
     private RobotDrive miniDrive;
     
+    private DiscoGyro gyroscope;
     private Encoder forwardEncoder;
     private UltrasonicSRF02_I2C ultrasonicIntake;
     private UltrasonicSRF02_I2C ultrasonicShooter;
     
-    private Relay leds;
+    private Relay decorativeLeds;
+    private Relay functionalLeds;
     
     boolean useMini = true;
 
@@ -55,6 +58,8 @@ public class Drivetrain extends Subsystem {
         miniDrive.setInvertedMotor(RobotDrive.MotorType.kFrontLeft, true); // Should be false
         miniDrive.setInvertedMotor(RobotDrive.MotorType.kRearLeft, true); // Should be false
 
+        gyroscope = new DiscoGyro(HW.gyroscope);
+        
         forwardEncoder = new Encoder(HW.forwardEncoderA, HW.forwardEncoderB);
         forwardEncoder.setDistancePerPulse(HW.distancePerPulse);
         forwardEncoder.start();
@@ -62,7 +67,8 @@ public class Drivetrain extends Subsystem {
         ultrasonicIntake = new UltrasonicSRF02_I2C(224);
         ultrasonicShooter = new UltrasonicSRF02_I2C(242);
         
-        leds = new Relay(1, HW.ledRelay);
+        decorativeLeds = new Relay(1, HW.decorativeLedRelay);
+        functionalLeds = new Relay(1, HW.functionalLedRelay);
     }
 
     public void initDefaultCommand() {
@@ -76,17 +82,22 @@ public class Drivetrain extends Subsystem {
         }
     }
 
-    public double getEncoderForwardDistance() {
-        return this.forwardEncoder.getDistance();
-    }
-
     public void setMiniCimUsage(boolean a) {
         this.useMini = a;
+    }
+    
+    public double getGyroscopeAngle() {
+        return this.gyroscope.getAngle();
+    }
+    
+    public double getEncoderForwardDistance() {
+        return this.forwardEncoder.getDistance();
     }
     
     public int getUltrasonicIntakeAverageValue() {
         return this.ultrasonicIntake.getAverageValue();
     }
+    
     public int getUltrasonicShooterAverageValue() {
         return this.ultrasonicShooter.getAverageValue();
     }
@@ -94,17 +105,32 @@ public class Drivetrain extends Subsystem {
     public boolean getMiniCimUsage() {
         return this.useMini;
     }
-    boolean state;
-    public void writeLEDState(boolean state) {
+    
+    boolean decorativeLEDState;
+    public void writeDecorativeLEDState(boolean state) {
         if (state) {
-            this.leds.set(Relay.Value.kOn);
+            this.decorativeLeds.set(Relay.Value.kOn);
         } else {
-            this.leds.set(Relay.Value.kOff);
+            this.decorativeLeds.set(Relay.Value.kOff);
         }
-        this.state = state;
+        this.decorativeLEDState = state;
     }
     
-    public boolean getLEDState() {
-        return this.state;
+    public boolean getDecorativeLEDState() {
+        return this.decorativeLEDState;
+    }
+    
+    boolean functionalLEDState;
+    public void writeFunctionalLEDState(boolean state) {
+        if (state) {
+            this.functionalLeds.set(Relay.Value.kOn);
+        } else {
+            this.functionalLeds.set(Relay.Value.kOff);
+        }
+        this.functionalLEDState = state;
+    }
+    
+    public boolean getFunctionalLEDState() {
+        return this.functionalLEDState;
     }
 }

@@ -9,18 +9,18 @@ public class AutonomousIntake extends CommandBase {
     double power;
 
     public AutonomousIntake(double p, int time) {
-        requires(rollerSub);
+        requires(intakeSub);
         maxRunTime = time;
         power = p;
     }
 
     protected void initialize() {
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
         startTime = System.currentTimeMillis();
     }
 
     protected void execute() {
-        rollerSub.setIntakeSpeed(power);
+        intakeSub.setIntakeSpeed(power);
     }
 
     protected boolean isFinished() {
@@ -28,7 +28,7 @@ public class AutonomousIntake extends CommandBase {
     }
 
     protected void end() {
-        rollerSub.setIntakeSpeed(0);
+        intakeSub.setIntakeSpeed(0);
     }
 
     protected void interrupted() {
