@@ -41,7 +41,8 @@ public class HW {
     /**---------------------------------
      * Outputs
      ---------------------------------*/
-    public static final int decorativeLedRelay = 7;
-    public static final int functionalLedRelay = 8;
+    public static final int functionalLedRelay = 6;
+    public static final int decorativeALedRelay = 7;
+    public static final int decorativeBLedRelay = 8;
 }
  

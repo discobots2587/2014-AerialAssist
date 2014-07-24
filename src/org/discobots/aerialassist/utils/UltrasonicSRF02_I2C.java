@@ -41,7 +41,6 @@ public class UltrasonicSRF02_I2C extends SensorBase {
                 if (latestData > 0) {
                     sampleData[pointer] = latestData;
                     pointer = (pointer == (sampleData.length - 1)) ? 0 : pointer + 1;
-                    System.out.println(buffer[0] + " " + buffer[1]);
                 }
                 try {
                     Thread.sleep(15); // <------------------- Update Wait Time

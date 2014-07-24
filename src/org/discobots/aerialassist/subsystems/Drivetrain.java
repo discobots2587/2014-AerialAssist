@@ -67,7 +67,7 @@ public class Drivetrain extends Subsystem {
         ultrasonicIntake = new UltrasonicSRF02_I2C(224);
         ultrasonicShooter = new UltrasonicSRF02_I2C(242);
         
-        decorativeLeds = new Relay(1, HW.decorativeLedRelay);
+        decorativeLeds = new Relay(1, HW.decorativeALedRelay);
         functionalLeds = new Relay(1, HW.functionalLedRelay);
     }
 
