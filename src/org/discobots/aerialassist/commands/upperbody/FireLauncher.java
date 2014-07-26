@@ -18,10 +18,10 @@ public class FireLauncher extends CommandBase {
         maxRunTime = 1500;
         switch (check) {
             case 0:
-                maxRunTime = 150;
+                maxRunTime = 200;
                 break;
             case 1:
-                maxRunTime = 200;
+                maxRunTime = 150;
                 break;
             case 2:
                 maxRunTime = 170;
