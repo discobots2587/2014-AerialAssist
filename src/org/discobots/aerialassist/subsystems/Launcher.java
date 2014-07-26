@@ -20,7 +20,6 @@ public class Launcher extends Subsystem {
     }
 
     public void fire(boolean shoot) {
-        System.out.println("[Debug] Launcher set to " + shoot);
         launcherSolenoid1.set(shoot);
         launcherSolenoid2.set(shoot);
         launcherSolenoid3.set(shoot);
