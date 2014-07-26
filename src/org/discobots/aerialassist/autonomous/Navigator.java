@@ -69,7 +69,7 @@ public class Navigator {
                     float xError = targetPose.getX() - currentPose.getX();
                     float yError = targetPose.getY() - currentPose.getY();
                     float distanceError = (float) Math.sqrt(xError * xError + yError * yError);
-                    if (Math.abs(distanceError) > 7.0) {
+                    if (Math.abs(distanceError) > 3.0) {
                         // we aren't at our target yet
                         float targetAngle = (float) Math.toDegrees(MathUtils.atan2(yError, xError));
                         float angleError = Pose.normalizeAngle(currentPose.getAngle(), 360.0f) - Pose.normalizeAngle(targetAngle, 360.0f);
@@ -93,10 +93,14 @@ public class Navigator {
                         // we are at our target, now time to turn to the target angle
                         float angleError = Pose.normalizeAngle(currentPose.getAngle(), 360.0f) - Pose.normalizeAngle(targetPose.getAngle(), 360.0f);
                         // this (angleError ^^^) might turn the robot only one way because of stupid problems. need to look for historic AngleController or FixAngle
-                        float kP = -1.0f / 45.0f;
-                        float output = angleError * kP;
-                        leftSide.setOutput(-output);
-                        rightSide.setOutput(output);
+                        if (Math.abs(angleError) > 2.0) {
+                            float kP = -1.0f / 45.0f;
+                            float output = angleError * kP;
+                            leftSide.setOutput(-output);
+                            rightSide.setOutput(output);
+                        } else {
+                            index++;
+                        }
                     }
                 }
                 try {
