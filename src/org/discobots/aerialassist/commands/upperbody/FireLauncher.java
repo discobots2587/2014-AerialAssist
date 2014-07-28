@@ -10,30 +10,19 @@ public class FireLauncher extends CommandBase {
     private long maxRunTime;
     public static final boolean FIRE = true;
     public static final boolean LOAD = false;
-
+    private long time = 0;
+    
     public FireLauncher(boolean fire, int ch) {
         requires(launcherSub);
         check = ch;
         shoot = fire;
         maxRunTime = 1500;
         switch (check) {
-            case 0:
+            case 1://150, 500 A
                 maxRunTime = 200;
                 break;
-            case 1:
-                maxRunTime = 150;
-                break;
-            case 2:
-                maxRunTime = 170;
-                break;
-            case 3:
-                maxRunTime = 2000;
-                break;
-            case 4:
-                maxRunTime = 190;
-                break;
-            case 5:
-                maxRunTime = 210;
+            case 3://1000 B
+                maxRunTime = 500;
                 break;
         }
     }
@@ -47,10 +36,16 @@ public class FireLauncher extends CommandBase {
         if (intakeSub.isExtended()) {
             launcherSub.fire(shoot);
         }
+        time = System.currentTimeMillis();
     }
 
     protected boolean isFinished() {
-        return System.currentTimeMillis() - startTime > maxRunTime;
+        if (System.currentTimeMillis() - startTime >= maxRunTime) {
+            System.out.println("[Debug] Shot completed in time " + (time - startTime));
+            return true;
+        } else {
+          return false;  
+        }
     }
 
     protected void end() {
