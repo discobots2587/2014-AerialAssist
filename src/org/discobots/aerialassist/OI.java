@@ -8,6 +8,7 @@ import org.discobots.aerialassist.commands.drive.SwitchDrive;
 import org.discobots.aerialassist.commands.upperbody.FireLauncher;
 import org.discobots.aerialassist.commands.upperbody.Intake;
 import org.discobots.aerialassist.commands.upperbody.ToggleArm;
+import org.discobots.aerialassist.commands.upperbody.ToggleLauncher;
 import org.discobots.aerialassist.utils.GamePad.AxisButton;
 
 /**
@@ -59,8 +60,6 @@ public class OI {
 
     private void mapButtons() {
 // Controller 1
-        b_btnX.whenPressed(new SwitchDrive(SwitchDrive.MODE_NULL));
-        b_btnY.whenPressed(new SwitchDrive(SwitchDrive.MODE_NULL));
         b_sStar.whenPressed(new SwitchDrive(SwitchDrive.MODE_AUTODETECT));
         b_bumpR.whenPressed(new ToggleArm(true));//arm up
         b_trigR.whenPressed(new ToggleArm(false));//arm down
@@ -71,6 +70,7 @@ public class OI {
         b_btnA.whenPressed(new FireLauncher(FireLauncher.FIRE, 1));
         b_btnB.whenPressed(new FireLauncher(FireLauncher.FIRE, 3));
         b_dpadL.whenPressed(new ToggleCompressor());
+        b_btnY.whenPressed(new ToggleLauncher());
 // Controller 2
         /*b2_btnX.whenPressed(new SwitchDrive(SwitchDrive.MODE_OMNIWHEEL, SwitchDrive.MODE_NULL));
         b2_btnY.whenPressed(new SwitchDrive(SwitchDrive.MODE_TRACTION, SwitchDrive.MODE_NULL));
