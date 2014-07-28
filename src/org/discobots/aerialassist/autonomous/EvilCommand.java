@@ -22,7 +22,7 @@ public class EvilCommand extends CommandBase {
     float left, right;
     static final Pose[] poses = {
     new Pose(0, 10, 180),
-    new Pose(10, 10, 270)
+    new Pose(5, 10, 270)
     };
             
     public EvilCommand() {
@@ -68,6 +68,7 @@ public class EvilCommand extends CommandBase {
 
     protected void execute() {
         drivetrainSub.tankDrive(left, right);
+        System.out.println(localizer.getCurrentPose().getX() + " " + localizer.getCurrentPose().getY() + " " + localizer.getCurrentPose().getNormalizedAngle() + " " + left + " " + right);
     }
 
     protected boolean isFinished() {

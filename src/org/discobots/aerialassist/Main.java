@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.discobots.aerialassist.autonomous.EvilCommand;
 import org.discobots.aerialassist.commands.CommandBase;
 import org.discobots.aerialassist.utils.Dashboard;
 import org.discobots.aerialassist.commands.Autonomous;
@@ -67,6 +68,7 @@ public class Main extends IterativeRobot {
         new SwitchDrive(SwitchDrive.MODE_NULL).start();
         new SetMiniCimUsage(true).start();
         new ControlLEDState().start();
+        new EvilCommand().start();
     }
 
     /**
