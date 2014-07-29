@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.discobots.aerialassist.autonomous;
 
 import com.sun.squawk.util.MathUtils;
@@ -25,11 +20,15 @@ public class Navigator {
 
     private boolean running;
 
+    NavigatorUpdateThread updateThread;
+    
     public Navigator(MotorOutput left, MotorOutput right, Localizer localizer) {
         this.leftSide = left;
         this.rightSide = right;
         this.localizer = localizer;
         running = false;
+        updateThread = new NavigatorUpdateThread();
+        updateThread.start();
     }
 
     public void setWaypoints(Pose[] poses) {
@@ -71,19 +70,20 @@ public class Navigator {
                     float distanceError = (float) Math.sqrt(xError * xError + yError * yError);
                     if (Math.abs(distanceError) > 3.0) {
                         // we aren't at our target yet
-                        float targetAngle = (float) Math.toDegrees(MathUtils.atan2(yError, xError));
-                        float angleError = Pose.normalizeAngle(currentPose.getAngle(), 360.0f) - Pose.normalizeAngle(targetAngle, 360.0f);
+                        float targetAngle = (float) -Math.toDegrees(MathUtils.atan2(yError, xError)) + 90;
+                        float angleError = Pose.normalizeAngle(currentPose.getAngle() - targetAngle, 360.0f);
                         // this (angleError ^^^) might turn the robot only one way because of stupid problems. need to look for historic AngleController or FixAngle 
+                        System.out.println("+++ " + currentPose.getAngle() + " " + targetAngle + " " + angleError + " " + distanceError);
                         if (Math.abs(angleError) > 5.0) {
                             // we need to turn before we move to target
-                            float kP = -1.0f / 45.0f;
+                            float kP = 1.0f / 90.0f;
                             float output = angleError * kP;
-                            leftSide.setOutput(-output);
+                            leftSide.setOutput(output);
                             rightSide.setOutput(output);
                         } else {
                             // out move angle is good, we can move to target now
                             float kP_distance = 1.0f / 36.0f;
-                            float kP_angle = -1.0f / 25.0f;
+                            float kP_angle = 1.0f / 25.0f;
                             float outputDistance = distanceError * kP_distance;
                             float outputAngle = angleError * kP_angle;
                             leftSide.setOutput(outputDistance - outputAngle);
@@ -96,7 +96,7 @@ public class Navigator {
                         if (Math.abs(angleError) > 2.0) {
                             float kP = -1.0f / 45.0f;
                             float output = angleError * kP;
-                            leftSide.setOutput(-output);
+                            leftSide.setOutput(output);
                             rightSide.setOutput(output);
                         } else {
                             index++;

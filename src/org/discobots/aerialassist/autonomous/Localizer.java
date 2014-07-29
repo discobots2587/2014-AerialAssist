@@ -33,9 +33,10 @@ public class Localizer {
 
                 float dRobotX = linearMotionSensor.getMotionOnAxisXSinceLastCallInches();
                 float dRobotY = linearMotionSensor.getMotionOnAxisYSinceLastCallInches();
+                //System.out.println(dRobotX + " " + dRobotY);
                 float robotAngle = angleSensor.getAngle();
-                float dFieldY = (float) (Math.sin(Math.toRadians(robotAngle)) * dRobotX - Math.cos(Math.toRadians(robotAngle - 90)) * dRobotY);
-                float dFieldX = (float) (Math.cos(Math.toRadians(robotAngle)) * dRobotX - Math.sin(Math.toRadians(robotAngle - 90)) * dRobotY);
+                float dFieldY = (float) (Math.sin(Math.toRadians(-(robotAngle - 90))) * dRobotX - Math.cos(Math.toRadians(-(robotAngle - 90))) * dRobotY);
+                float dFieldX = (float) (Math.cos(Math.toRadians(-(robotAngle - 90))) * dRobotX - Math.sin(Math.toRadians(-(robotAngle - 90))) * dRobotY);
 
                 currentPose.setX(currentPose.getX() + dFieldX);
                 currentPose.setY(currentPose.getY() + dFieldY);

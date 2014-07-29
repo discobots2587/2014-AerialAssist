@@ -36,8 +36,11 @@ public class EvilCommand extends CommandBase {
             }
         };
         encoder = new LinearMotionSensor() {
+            float diff = (float) drivetrainSub.getEncoderForwardDistance() * 13 / 12;
             public float getMotionOnAxisYSinceLastCallInches() {
-                return (float) drivetrainSub.getEncoderForwardDistance() * 7 / 9;
+                float out = (float) drivetrainSub.getEncoderForwardDistance() * 13 / 12 - diff;
+                diff = (float) drivetrainSub.getEncoderForwardDistance() * 13 / 12;
+                return out;
             }
 
             public float getMotionOnAxisXSinceLastCallInches() {
@@ -59,7 +62,7 @@ public class EvilCommand extends CommandBase {
     }
 
     protected void initialize() {
-        compressorSub.on();
+        //compressorSub.on();
         navigator.setWaypoints(poses);
         try {
             navigator.start();
