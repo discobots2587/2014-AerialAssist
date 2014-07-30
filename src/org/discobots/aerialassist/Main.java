@@ -73,6 +73,7 @@ public class Main extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        System.out.println(CommandBase.compressorSub.getPressurePSIDou());
         long begin = System.currentTimeMillis();
         Scheduler.getInstance().run();
         updateAutonomousSelection();

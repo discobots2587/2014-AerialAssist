@@ -35,7 +35,7 @@ public class Dashboard {
         SmartDashboard.putBoolean("Compressor ON when PSI < 120", compSub.isEnabled());
         SmartDashboard.putBoolean("Tanks Full at 120PSI", compSub.isFull());
         SmartDashboard.putBoolean("Optimal Shooting PSI", compSub.getPressurePSIInt() > 70);
-        SmartDashboard.putNumber("PSI", compSub.getPressurePSIDou());
+        SmartDashboard.putNumber("PSI", compSub.getPressurePSIInt());
 
         // Intake
         SmartDashboard.putBoolean("Intake Extended", intaSub.isExtended());

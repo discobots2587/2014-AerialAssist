@@ -69,7 +69,8 @@ public class Autonomous extends CommandGroup {
 
     private void autonomousMode3Init() { // TWO BALL: Double Truss
         addSequential(new ToggleCompressor());
-        addSequential(new ToggleArm(false)); // arm down
+        addSequential(new AutonomousIntake(0.7 * Intake.IN, 2000));
+        addParallel(new ToggleArm(false)); // arm down
         addSequential(new WaitCommand(1.5));
 //        addSequential(new AutonomousTankDrive(-.6, -.65, 500));
 //        addSequential(new WaitCommand(.5));
@@ -77,8 +78,8 @@ public class Autonomous extends CommandGroup {
         addSequential(new WaitCommand(.5));
         addSequential(new AutonomousTankDrive(.6, .65, 250));
         addSequential(new AutonomousIntake(1 * Intake.IN, 2000));
-        addSequential(new AutonomousTankDrive(-0.6, -0.65, 250));
-        addSequential(new WaitCommand(.5));
+        addSequential(new AutonomousTankDrive(-0.6, -0.65, 100));
+        addSequential(new WaitCommand(2.5));
         addSequential(new FireLauncher(true, 3));
         addSequential(new AutonomousTankDrive(-0.6, -0.65, 1000));
         addSequential(new WaitCommand(5));

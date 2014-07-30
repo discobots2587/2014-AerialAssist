@@ -70,10 +70,8 @@ public class OI {
         b2_bumpL.whenReleased(new Intake(0));
         b2_trigL.whileHeld(new Intake(Intake.OUT));
         b2_trigL.whenReleased(new Intake(0));
-        b2_btnA.whenPressed(new FireLauncher(FireLauncher.FIRE, 1));
         b2_btnB.whenPressed(new FireLauncher(FireLauncher.FIRE, 3));
         b2_dpadL.whenPressed(new ToggleCompressor());
-        b2_btnY.whenPressed(new ToggleLauncher());
         
     }
 

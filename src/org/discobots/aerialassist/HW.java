@@ -24,7 +24,7 @@ public class HW {
     // Port 3 & 4 are bad on actual robot.
     public static final int intakeSolenoidA = 1, intakeSolenoidB = 5;
     public static final int launcherSolenoidA = 2, launcherSolenoidB = 6,
-                            launcherSolenoidC = 7;
+                             launcherSolenoidC = 7;
     
     /**---------------------------------
      * Sensors
